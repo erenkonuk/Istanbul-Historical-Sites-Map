@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstanbul</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="menu">
+        <div id="logo">
+            <img src="images/istanbul.png" alt="Logo" class="rounded-logo">
+        </div>
+        <div id="menuItems">
+            <a href="#" id="historyLink">Tarihi</a>
+            <a href="#" id="popularPlacesLink" style="margin-left: 30px;">Popüler Yerler</a>
+            <div id="siteSearch" style="margin-left: 30px;">
+                <input type="text" id="searchInput" placeholder="Örnek: Ayasofya">
+                <button onclick="searchLocation()">Ara</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="historyPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2 class="popup-content">Tarihi</h2>
+            <div class="istanbul-history">
+                <p class="popup-content2">İstanbul tarihi, günümüzde Türkiye toprakları üzerinde bulunan İstanbul şehrinin tarihini anlatır. İstanbul'un tarihi, ana hatlarıyla beş büyük döneme ayrılabilir: Tarih öncesi dönem, Roma İmparatorluğu dönemi, Bizans İmparatorluğu dönemi, Osmanlı İmparatorluğu dönemi ve Türkiye Cumhuriyeti dönemi.
+                    4. yüzyıldan 20. yüzyıla kadar yaklaşık on altı yüzyıl boyunca dünyanın en önemli ve en büyük metropolleri arasında bulunmuş bir şehir olmuştur.[1] Avrupa, Asya ve Afrika kıtalarının buluştuğu geniş bir bölgenin tartışmasız tek hâkimi olmuş ve bu süreç içerisinde dünya tarihini önemli derecede etkilemeyi başarmıştır. İstanbul yaklaşık 1600 yıl boyunca, M.S. 330'dan 1922'ye kadar bulunan dönemde; sırasıyla Roma İmparatorluğu (330-395), Bizans İmparatorluğu (395-1204, 1261-1453), Latin İmparatorluğu (1204-1261) ve Osmanlı İmparatorluğu (1453-1922) olmak üzere dört farklı imparatorluğa başkentlik yapmıştır. Bu imparatorlukların üçü, var oldukları dönemde dünyanın iktidar sahibi ve en güçlü devletleri olarak tarihe geçmiştir. Hepsinin İstanbul'dan yönetildiği düşünüldüğünde, şehrin tarihsel önemi ve değeri kolaylıkla anlaşılabilir.
+                    1922'de Osmanlı İmparatorluğu'nun yıkılıp 13 Ekim 1923'te Ankara'nın yeni kurulan Türk devletinin başkenti olmasıyla birlikte yüzyıllık köklü başkentlik özelliğini kaybeden İstanbul şehri, 4. yüzyıldan 20. yüzyıla kadar on altı yüzyıl boyunca koruduğu her alanda etkin bir dünya şehri olma özelliğini, Türkiye Cumhuriyeti'nin kuruluşundan sonra tekrar kazanmaya başlamış ve günümüzde Avrupa ve Orta Doğu’nun en önemli merkezleri arasında kendine yer bulmuştur.
+                    İstanbul'un yerleşim tarihi yaklaşık 300 bin, kentsel tarihi yaklaşık 3 bin, başkentlik tarihi ise 1600 yıla kadar uzanır. Avrupa ile Asya kıtalarının kesiştiği noktada bulunan İstanbul, çağlar boyunca farklı uygarlık ve kültürlere ev sahipliği yapmış, yüzyıllar boyu çeşitli din, dil ve ırktan insanların bir arada yaşadığı kozmopolit ve metropolit bir şehir olmuş ve tarihsel süreçte eşsiz bir mozaik hâlini almıştır. Uzun zaman dilimleri boyunca her alanda merkez olmayı ve iktidarda kalmayı başaran dünyadaki ender yerleşim yerlerinden biri olmuştur.
+                    Orta Çağ'da İstanbul'un nüfusu azalmıştı; ancak şehir Osmanlı İmparatorluğu'nun zirvesine yaklaştıkça, 16. yüzyılda 700.000'e yakın bir nüfusa ulaştı ve bir kez daha dünyanın en kalabalık şehirleri arasına girmeyi başladı.[2] Günümüzde İstanbul, 2021 yılı TÜİK verilerine göre 15,8 milyonu aşkın nüfusuyla Türkiye'nin ve Avrupa'nın en kalabalık şehridir ve dünyanın da en kalabalık 15. şehridir.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="popularPlacesPopup" class="popup">
+        <div class="popup-content">
+          <span class="close">&times;</span>
+          <h2 class="popup-content">Popüler Yerler</h2>
+          <div class="popularPlacesPopup2">
+          <h3 class="popup-content2">
+                Tarihi Yerler:
+                <ul>
+                    <li><a href="#" onclick="searchLocation('ayasofya')">Ayasofya</a></li>
+                    <li><a href="#" onclick="searchLocation('topkapı sarayı')">Topkapı Sarayı</a></li>
+                    <li><a href="#" onclick="searchLocation('sultanahmet camii')">Sultanahmet Camii</a></li>
+                    <li><a href="#" onclick="searchLocation('yerebatan sarnıcı')">Yerebatan Sarnıcı</a></li>
+                    <li><a href="#" onclick="searchLocation('kapalı çarşı')">Kapalı Çarşı</a></li>
+                    <li><a href="#" onclick="searchLocation('dolmabahçe sarayı')">Dolmabahçe Sarayı</a></li>
+                    <li><a href="#" onclick="searchLocation('süleymaniye camii')">Süleymaniye Camii</a></li>
+                    <li><a href="#" onclick="searchLocation('rumeli hisarı')">Rumeli Hisarı</a></li>
+                    <li><a href="#" onclick="searchLocation('pierre loti tepesi')">Pierre Loti Tepesi</a></li>
+                    <li><a href="#" onclick="searchLocation('galata kulesi')">Galata Kulesi</a></li>
+                    <li><a href="#" onclick="searchLocation('kız kulesi')">Kız Kulesi</a></li>
+                </ul>
+            </h3>
+            <h3 class="popup-content2">
+                Müzeler:
+                <ul>
+                    <li><a href="#" onclick="searchLocation('arkeoloji müzeleri')">İstanbul Arkeoloji Müzeleri</a></li>
+                    <li><a href="#" onclick="searchLocation('türk ve')">Türk ve İslam Eserleri Müzesi</a></li>
+                    <li><a href="#" onclick="searchLocation('modern sanat müzesi')">İstanbul Modern Sanat Müzesi</a></li>
+                    <li><a href="#" onclick="searchLocation('pera müzesi')">Pera Müzesi</a></li>
+                    <li><a href="#" onclick="searchLocation('rahmi m. koç müzesi')">Rahmi M. Koç Müzesi</a></li>
+                    <li><a href="#" onclick="searchLocation('oyuncak müzesi')">Oyuncak Müzesi</a></li>
+                </ul>
+            </h3>
+            <h3 class="popup-content2">
+                Doğal Güzellikler:
+                <ul>
+                    <li><a href="#" onclick="searchLocation('boğaz turu')">Boğaz Turu</a></li>
+                    <li><a href="#" onclick="searchLocation('prens adaları')">Prens Adaları</a></li>
+                    <li><a href="#" onclick="searchLocation('emirgan korusu')">Emirgan Korusu</a></li>
+                    <li><a href="#" onclick="searchLocation('yıldız parkı')">Yıldız Parkı</a></li>
+                    <li><a href="#" onclick="searchLocation('belgrad ormanı')">Belgrad Ormanı</a></li>
+                    <li><a href="#" onclick="searchLocation('gülhane parkı')">Gülhane Parkı</a></li>
+                </ul>
+            </h3>
+            <h3 class="popup-content2">
+                Stadyum:
+                <ul>
+                    <li><a href="#" onclick="searchLocation('rams park')">RAMS Park (GALATASARAY)</a></li>
+                    <li><a href="#" onclick="searchLocation('tüpraş stadyumu')">Tüpraş Stadyumu (Beşiktaş)</a></li>
+                    <li><a href="#" onclick="searchLocation('şükrü saraçoğlu stadyumu')">Şükrü Saraçoğlu Stadyumu (Fenerbahçe)</a></li>
+                    <li><a href="#" onclick="searchLocation('atatürk olimpiyat stadyumu')">Atatürk Olimpiyat Stadyumu</a></li>
+                    <li><a href="#" onclick="searchLocation('fatih terim stadyumu')">Fatih Terim Stadyumu (Başakşehir)</a></li>
+                </ul>
+            </h3>
+            <h3 class="popup-content2">
+                Üniversite:
+                <ul>
+                    <li><a href="#" onclick="searchLocation('boğaziçi üniversitesi')">Boğaziçi Üniversitesi</a></li>
+                    <li><a href="#" onclick="searchLocation('teknik üniversitesi')">İstanbul Teknik Üniversitesi</a></li>
+                    <li><a href="#" onclick="searchLocation('marmara üniversitesi')">Marmara Üniversitesi</a></li>
+                    <li><a href="#" onclick="searchLocation('yıldız teknik üniversitesi')">Yıldız Teknik Üniversitesi</a></li>
+                </ul>
+            </h3>
+            <h2 class="popup-content" style="color: black;">İyi geziler!</h2>
+            </div>
+        </div>
+      </div>
+
+    <div id="map" style="width: 100%; height: 150vh;"></div>
+
+    <footer>
+        <div class="footer-top" id="footer" class="footer-top">
+            <ul class="social-links">
+                <li><a href="https://www.linkedin.com/in/mahmut-eren-konuk/" target="_blank">LinkedIn</a></li>
+                    <span class="divider">|</span>
+                    <span class="divider"> </span>
+                <li><a href="https://github.com/erenkonuk" target="_blank">GitHub</a></li>
+                <li>
+                    <span class="divider">|</span>
+                    <span class="divider"> </span>
+                    <span class="divider"> </span>
+                    konukmahmuteren@gmail.com
+                </li>
+            </ul>
+            
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Develop by Mahmut Eren Konuk </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
